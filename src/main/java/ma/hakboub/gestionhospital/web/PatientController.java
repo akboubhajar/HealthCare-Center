@@ -1,9 +1,9 @@
-package ma.enset.gestionhospital.web;
+package ma.hakboub.gestionhospital.web;
 
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
-import ma.enset.gestionhospital.entities.Patient;
-import ma.enset.gestionhospital.repository.PatientRepository;
+import ma.hakboub.gestionhospital.entities.Patient;
+import ma.hakboub.gestionhospital.repository.PatientRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
@@ -12,8 +12,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
-import javax.naming.Binding;
 
 @Controller
 @AllArgsConstructor

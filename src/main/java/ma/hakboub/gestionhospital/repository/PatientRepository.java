@@ -1,6 +1,6 @@
-package ma.enset.gestionhospital.repository;
+package ma.hakboub.gestionhospital.repository;
 
-import ma.enset.gestionhospital.entities.Patient;
+import ma.hakboub.gestionhospital.entities.Patient;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -13,4 +13,6 @@ public interface PatientRepository extends JpaRepository<Patient,Long> {
     //Deuxieme methode pour retourner une pagination
     @Query("select p from Patient p where p.nom like :x")
     Page<Patient> chercher(@Param("x") String keyword ,Pageable peagable);
+    boolean existsByNom(String nom);
+
 }

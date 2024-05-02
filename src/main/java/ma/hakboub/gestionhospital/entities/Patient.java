@@ -1,4 +1,4 @@
-package ma.enset.gestionhospital.entities;
+package ma.hakboub.gestionhospital.entities;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.DecimalMin;
