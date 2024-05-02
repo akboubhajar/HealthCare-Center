@@ -14,46 +14,25 @@ public class GestionHospitalApplication implements CommandLineRunner {
 
     @Autowired
     private PatientRepository patientRepository;
+
     public static void main(String[] args) {
         SpringApplication.run(GestionHospitalApplication.class, args);
     }
 
+
     @Override
     public void run(String... args) throws Exception {
-        int numberOfPatients = 20;
-        generateAndSaveRandomPatients(numberOfPatients);
+        saveManualPatients();
     }
 
-    private void generateAndSaveRandomPatients(int count) {
-        Random random = new Random();
+    private void saveManualPatients() {
+        patientRepository.save(new Patient(null, "Emma", new Date(103, 7, 15), false, 103));
+        patientRepository.save(new Patient(null, "Isabella", new Date(100, 6, 7), true, 104));
+        patientRepository.save(new Patient(null, "Mia", new Date(97, 10, 29), false, 105));
+        patientRepository.save(new Patient(null, "Bob", new Date(69, 4, 12), true, 106));
+        patientRepository.save(new Patient(null, "John", new Date(53, 5, 26), true, 107));
 
-        for (int i = 0; i < count; i++) {
-            // Generate random patient attributes
-            String name = generateRandomName();
-            Date dateOfBirth = generateRandomDateOfBirth();
-            boolean isInsured = random.nextBoolean();
-            int bloodPressure = 100 + random.nextInt(101); // Random blood pressure value between 100 and 200
-
-            // Save the generated patient
-            patientRepository.save(new Patient(null, name, dateOfBirth, isInsured, bloodPressure));
-        }
     }
-
-
-    private String generateRandomName() {
-        String[] names = {"John", "Alice", "Bob", "Emma", "Michael", "Sophia", "Liam", "Olivia", "Noah", "Ava", "William", "Isabella", "James", "Sophia", "Benjamin", "Charlotte", "Lucas", "Amelia", "Henry", "Mia"};
-        Random random = new Random();
-        return names[random.nextInt(names.length)];
-    }
-
-    private Date generateRandomDateOfBirth() {
-        Random random = new Random();
-        long millisIn50Years = 50L * 365 * 24 * 60 * 60 * 1000;
-        long randomMillis = System.currentTimeMillis() - random.nextLong() % millisIn50Years;
-        return new Date(randomMillis);
-    }
-
-
 }
 
 

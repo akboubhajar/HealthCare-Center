@@ -6,7 +6,7 @@ layout:decorate="template1">
 
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>HealthCare Center</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="/webjars/bootstrap-icons/1.11.3/font/bootstrap-icons.css">
 </head>
@@ -24,15 +24,17 @@ layout:decorate="template1">
                     </button>
                 </form>
                 <div class="table-responsive">
-                    <table class="table table-hover">
-                        <thead class="thead-dark">
+                    <table class="table table-striped">
+                        <thead>
                         <tr>
                             <th scope="col">Id</th>
                             <th scope="col">Nom</th>
                             <th scope="col">Date de Naissance</th>
                             <th scope="col">Malade</th>
                             <th scope="col">Score</th>
-                            <th scope="col">Actions</th>
+                            <th scope="col" colspan="2" >Actions</th>
+
+
                         </tr>
                     <tr th:each="patient : ${listPatients}">
                         <td th:text="${patient.id}"></td>
@@ -56,18 +58,29 @@ layout:decorate="template1">
 
                 </table>
             </div>
-            <ul class="nav nav-pills">
-                <li th:each="page,status:${pages}">
-                    <a  th:href="@{/index(page=${status.index},keyword=${keyword})}"
-                        th:class="${currentPage ==  status.index ? 'btn btn-info ms-2' : 'btn btn-outline-info ms-2'}"
-                        th:text="${status.index}">
-                    </a>
-                </li>
-            </ul>
+                <ul class="pagination">
+                    <li class="page-item">
+                        <a class="page-link" href="#" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                    </li>
+                    <li th:each="page,status:${pages}">
+                        <a th:href="@{/index(page=${status.index},keyword=${keyword})}"
+                           th:class="${currentPage == status.index ? 'page-link active' : 'page-link'}"
+                           th:text="${status.index}"></a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="#" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
 </div>
 
-</div>
 </body>
 </html>
